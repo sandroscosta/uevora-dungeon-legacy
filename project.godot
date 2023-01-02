@@ -14,6 +14,10 @@ config/name="Dungeon Crawler Lineage"
 run/main_scene="res://src/scenes/Game.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+GameState="*res://src/scripts/GameState.gd"
+
 [display]
 
 window/size/width=320
