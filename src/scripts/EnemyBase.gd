@@ -6,7 +6,7 @@ var chase : bool = false
 
 onready var player = get_tree().get_nodes_in_group("player")[0]
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	if chase:
 		var direction = (player.position - position).normalized()
 		move_and_slide(direction * speed)

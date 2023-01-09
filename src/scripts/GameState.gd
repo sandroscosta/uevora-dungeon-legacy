@@ -5,7 +5,7 @@ var player_hp: int = 100
 var _player_max_hp: int = 100 setget set_max_hp, get_max_hp
 var wave: int = 1
 var enemies_killed: int = 0
-var spawn_num_enemies: int = 5
+var spawn_num_enemies: int = 3
 
 func set_max_hp(max_hp: int):
 	_player_max_hp = max_hp
