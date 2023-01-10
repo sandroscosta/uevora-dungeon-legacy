@@ -1,7 +1,11 @@
 extends KinematicBody2D
 
+export (int) var health = GameState.get_max_hp()
 export(int) var SPEED = 75
 var velocity: Vector2 = Vector2.ZERO
+
+func _ready():
+	pass
 
 func get_input():
 	velocity = Vector2(
@@ -12,3 +16,16 @@ func get_input():
 func _physics_process(_delta):
 	get_input()
 	velocity = move_and_slide(velocity)
+	die()
+	print(GameState.player_hp)
+
+func die():
+	if GameState.player_hp <= 0:
+		print("DEAD")
+
+
+
+func _on_HurtBox_body_entered(body):
+	if body.is_in_group("enemies"):
+		if body.has_method("deal_damage"):
+			GameState.player_hp -= body.deal_damage()
