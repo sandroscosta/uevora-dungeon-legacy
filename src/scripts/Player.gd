@@ -3,9 +3,11 @@ extends KinematicBody2D
 export (int) var health = GameState.get_max_hp()
 export(int) var SPEED = 75
 var velocity: Vector2 = Vector2.ZERO
+var player_scale: Vector2 = Vector2.ZERO
 
 func _ready():
-	pass
+	player_scale = GameState.proportions["regular"]
+	scale = player_scale
 
 func get_input():
 	velocity = Vector2(
