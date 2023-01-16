@@ -5,6 +5,7 @@ export(int) var SPEED = 75
 var velocity: Vector2 = Vector2.ZERO
 var player_scale: Vector2 = Vector2.ZERO
 
+
 func _ready():
 	player_scale = GameState.proportions["regular"]
 	scale = player_scale
@@ -19,12 +20,10 @@ func _physics_process(_delta):
 	get_input()
 	velocity = move_and_slide(velocity)
 	die()
-	print(GameState.player_hp)
 
 func die():
 	if GameState.player_hp <= 0:
 		print("DEAD")
-
 
 
 func _on_HurtBox_body_entered(body):

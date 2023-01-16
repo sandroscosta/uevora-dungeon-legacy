@@ -43,6 +43,7 @@ script = ExtResource( 1 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 2 )
 animation = "idle"
+frame = 2
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -63,5 +64,8 @@ modulate = Color( 1, 0, 0, 1 )
 self_modulate = Color( 0, 0.784314, 0.996078, 1 )
 position = Vector2( 0, 5 )
 shape = SubResource( 3 )
+
+[node name="Aim" type="Position2D" parent="."]
+position = Vector2( 0, 8 )
 
 [connection signal="body_entered" from="HurtBox" to="." method="_on_HurtBox_body_entered"]
