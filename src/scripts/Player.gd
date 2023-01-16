@@ -5,10 +5,16 @@ export(int) var SPEED = 75
 var velocity: Vector2 = Vector2.ZERO
 var player_scale: Vector2 = Vector2.ZERO
 
+export (PackedScene) var weapon = preload("res://src/scenes/WeaponKnife.tscn")
+onready var aim = get_node("Aim")
 
 func _ready():
 	player_scale = GameState.proportions["regular"]
 	scale = player_scale
+	
+func _input(event):
+	if event.is_action_pressed("attack"):
+		attack()
 
 func get_input():
 	velocity = Vector2(
@@ -25,6 +31,10 @@ func die():
 	if GameState.player_hp <= 0:
 		print("DEAD")
 
+func attack():
+	var knife = weapon.instance()
+	add_child(knife)
+	knife.transform = aim.transform
 
 func _on_HurtBox_body_entered(body):
 	if body.is_in_group("enemies"):

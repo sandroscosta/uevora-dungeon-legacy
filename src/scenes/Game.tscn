@@ -15,6 +15,6 @@ script = ExtResource( 3 )
 [node name="PlayerYPosition" type="YSort" parent="."]
 
 [node name="Player" parent="PlayerYPosition" instance=ExtResource( 1 )]
-position = Vector2( 45, 35 )
+position = Vector2( 156, 86 )
 
 [node name="EnemySpawn" type="YSort" parent="."]
