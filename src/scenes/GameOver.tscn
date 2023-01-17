@@ -1,0 +1,50 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://assets/fonts/alagard.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://assets/sprites/frames/elf_m_hit_anim_f0.png" type="Texture" id=2]
+[ext_resource path="res://src/scripts/GameOver.gd" type="Script" id=3]
+
+[sub_resource type="DynamicFont" id=1]
+size = 20
+font_data = ExtResource( 1 )
+
+[node name="GameOver" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 3 )
+
+[node name="BackgroundPanel" type="Panel" parent="."]
+margin_right = 320.0
+margin_bottom = 181.0
+
+[node name="LabelYouDied" type="Label" parent="."]
+margin_left = 112.0
+margin_top = 40.0
+margin_right = 207.0
+margin_bottom = 71.0
+custom_fonts/font = SubResource( 1 )
+text = "You died"
+align = 1
+valign = 1
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 160, 88 )
+texture = ExtResource( 2 )
+
+[node name="RestartButton" type="Button" parent="."]
+modulate = Color( 0, 1, 0.694118, 1 )
+margin_left = 112.0
+margin_top = 128.0
+margin_right = 208.0
+margin_bottom = 152.0
+text = "Choose next of kin"
+
+[node name="LabelCharName" type="Label" parent="."]
+margin_left = 40.0
+margin_top = 104.0
+margin_right = 288.0
+margin_bottom = 114.0
+text = "Sir Whatever Itsname"
+align = 1
+
+[connection signal="pressed" from="RestartButton" to="." method="_on_RestartButton_pressed"]

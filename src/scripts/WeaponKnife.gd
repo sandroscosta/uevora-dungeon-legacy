@@ -18,3 +18,4 @@ func _on_WeaponKnife_body_entered(body):
 	if body.is_in_group("enemies"):
 		if body.has_method("handle_hit"):
 			body.handle_hit(damage)
+			queue_free()
