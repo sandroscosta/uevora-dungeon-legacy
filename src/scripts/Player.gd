@@ -1,6 +1,5 @@
 extends KinematicBody2D
 
-export (int) var health = GameState.get_max_hp()
 export(int) var SPEED = 75
 var velocity: Vector2 = Vector2.ZERO
 var player_scale: Vector2 = Vector2.ZERO
@@ -29,7 +28,7 @@ func _physics_process(_delta):
 
 func die():
 	if GameState.player_hp <= 0:
-		print("DEAD")
+		get_tree().change_scene("res://src/scenes/GameOver.tscn")
 
 func attack():
 	var knife = weapon.instance()

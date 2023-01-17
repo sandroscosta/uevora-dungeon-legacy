@@ -21,7 +21,6 @@ func _on_ChaseArea_body_entered(body):
 		animationSprite.animation = "run"
 
 func handle_hit(value):
-	# body.has_method("handle_hit")
 	health_points -= value
 
 func deal_damage():
