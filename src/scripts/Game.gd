@@ -12,13 +12,12 @@ func _ready():
 
 func _process(_delta):
 	if GameState.wave < GameState.max_waves:
-		if GameState.spawn_num_enemies == GameState.enemies_killed:
+		if GameState.spawn_num_enemies == GameState.wave_enemy_kills:
 			GameState.generate_next_wave()
 			enemy_spawn()
 
 func enemy_spawn():
 	for i in GameState.spawn_num_enemies:
 		var enemy = EnemyBase.instance()
-		enemy.speed = rng.randi_range(35,55)
 		enemy.position = Vector2(rng.randi_range(50, 200), rng.randi_range(50, 200))
 		EnemySpawn.add_child(enemy)

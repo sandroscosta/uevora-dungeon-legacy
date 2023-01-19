@@ -1,15 +1,16 @@
 extends Node
-#Global variables and game state
 
-const MAX_ROUND_ENEMIES = 3
+const MAX_ROUND_ENEMIES = 5
 
 var random = RandomNumberGenerator.new()
 
 var player_hp: int = 100
 var _player_max_hp: int = 100 setget set_max_hp, get_max_hp
+var player_mana: int = 10
 var wave: int = 0
 var max_waves: int = 6
 var enemies_killed: int = 0
+var wave_enemy_kills: int = 0
 var spawn_num_enemies: int = MAX_ROUND_ENEMIES
 
 var possible_titles = ["Captain", "Seaman", "King", "Sir", "Doctor", "Gunman"]
@@ -63,7 +64,7 @@ func _get_player_name():
 func generate_next_wave():
 	wave += 1
 	spawn_num_enemies = MAX_ROUND_ENEMIES * wave
-	enemies_killed = 0
+	wave_enemy_kills = 0
 	character_name = _get_player_name()
 
 func generate_next_of_kin():
