@@ -23,4 +23,5 @@ func enemy_spawn():
 func generate_next_wave():
 	GameState.wave += 1
 	GameState.spawn_num_enemies = GameState.MAX_ROUND_ENEMIES * GameState.wave
+	GameState.enemies_killed = 0
 	enemy_spawn()

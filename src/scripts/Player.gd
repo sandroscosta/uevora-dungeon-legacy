@@ -4,11 +4,12 @@ export(int) var SPEED = 75
 var velocity: Vector2 = Vector2.ZERO
 var player_scale: Vector2 = Vector2.ZERO
 
-export (PackedScene) var weapon = preload("res://src/scenes/WeaponKnife.tscn")
+export (PackedScene) var weapon
 onready var aim = get_node("Aim")
 
 func _ready():
-	player_scale = GameState.proportions["regular"]
+	player_scale = GameState.chose_proportions["regular"]
+	weapon = load("res://src/scenes/" + GameState.chose_weapons[0])
 	scale = player_scale
 	
 func _input(event):
@@ -31,9 +32,9 @@ func die():
 		get_tree().change_scene("res://src/scenes/GameOver.tscn")
 
 func attack():
-	var knife = weapon.instance()
-	add_child(knife)
-	knife.transform = aim.transform
+	var weapon_attack = weapon.instance()
+	add_child(weapon_attack)
+	weapon_attack.transform = aim.transform
 
 func _on_HurtBox_body_entered(body):
 	if body.is_in_group("enemies"):

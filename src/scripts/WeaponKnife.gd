@@ -4,6 +4,7 @@ extends Area2D
 export (int) var speed: int = 200
 export (int) var damage: int = 5
 var hit: bool = false
+var throwable: bool = true
 
 onready var animation = get_node("AnimationPlayer")
 
