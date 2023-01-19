@@ -65,3 +65,8 @@ func generate_next_wave():
 	spawn_num_enemies = MAX_ROUND_ENEMIES * wave
 	enemies_killed = 0
 	character_name = _get_player_name()
+
+func generate_next_of_kin():
+	# the dict should return the characteristics of the player, including weapon
+	var next: Dictionary
+	
