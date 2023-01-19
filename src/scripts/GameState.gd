@@ -3,6 +3,8 @@ extends Node
 
 const MAX_ROUND_ENEMIES = 3
 
+var random = RandomNumberGenerator.new()
+
 var player_hp: int = 100
 var _player_max_hp: int = 100 setget set_max_hp, get_max_hp
 var wave: int = 0
@@ -14,7 +16,7 @@ var possible_titles = ["Captain", "Seaman", "King", "Sir", "Doctor", "Gunman"]
 var possible_first_names = ["Smartpants", "Christ", "Phasma", "Buhuu", "Pastry", "Wineman", "Vice"]
 var possible_last_names = ["the First", "The Last", "the Very Best", "the Church", "the Killer", "the Slayer"]
 
-var character_name: String = "Captain Smartpants the Third"
+var character_name: String
 
 var chose_proportions: Dictionary = {
 	"regular": Vector2(1,1),
@@ -46,3 +48,20 @@ func restart_game():
 	player_hp = _player_max_hp
 	wave = 0
 	spawn_num_enemies = MAX_ROUND_ENEMIES
+
+func _ready():
+	random.randomize()
+	character_name = _get_player_name()
+
+func _get_player_name():
+	var name = ""
+	name += possible_titles[random.randi_range(0, len(possible_titles)-1)]
+	name += " " + possible_first_names[random.randi_range(0, len(possible_first_names)-1)]
+	name += " " + possible_last_names[random.randi_range(0, len(possible_last_names)-1)]
+	return name
+
+func generate_next_wave():
+	wave += 1
+	spawn_num_enemies = MAX_ROUND_ENEMIES * wave
+	enemies_killed = 0
+	character_name = _get_player_name()
