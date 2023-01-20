@@ -7,6 +7,7 @@ var random = RandomNumberGenerator.new()
 var player_hp: int = 100
 var _player_max_hp: int = 100 setget set_max_hp, get_max_hp
 var player_mana: int = 10
+var treasure: int = 0
 var wave: int = 0
 var max_waves: int = 6
 var enemies_killed: int = 0
@@ -50,6 +51,7 @@ func restart_game():
 	player_hp = _player_max_hp
 	wave = 0
 	spawn_num_enemies = MAX_ROUND_ENEMIES
+	player_mana = 10
 
 func _ready():
 	random.randomize()
