@@ -7,6 +7,8 @@ var player_scale: Vector2 = Vector2.ZERO
 export (PackedScene) var weapon
 onready var aim = get_node("Aim")
 
+var knockback := Vector2.ZERO
+
 func _ready():
 	player_scale = GameState.chose_proportions["regular"]
 	weapon = load("res://src/scenes/" + GameState.chose_weapons[0])
@@ -22,9 +24,13 @@ func get_input():
 		Input.get_action_strength("ui_down") - Input.get_action_strength("ui_up")
 	).normalized() * SPEED
 
-func _physics_process(_delta):
+func _physics_process(delta):
 	get_input()
 	velocity = move_and_slide(velocity)
+	
+	knockback = knockback.move_toward(Vector2.ZERO, 200*delta)
+	knockback = move_and_slide(knockback)
+	
 	die()
 
 func die():
@@ -38,5 +44,6 @@ func attack():
 
 func _on_HurtBox_body_entered(body):
 	if body.is_in_group("enemies"):
+		knockback = body.direction * 120
 		if body.has_method("deal_damage"):
 			GameState.player_hp -= body.deal_damage()
