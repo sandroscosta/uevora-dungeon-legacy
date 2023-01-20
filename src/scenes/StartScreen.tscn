@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://assets/fonts/alagard.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://assets/sprites/frames/elf_m_hit_anim_f0.png" type="Texture" id=2]
@@ -7,6 +7,11 @@
 [sub_resource type="DynamicFont" id=1]
 size = 20
 font_data = ExtResource( 1 )
+
+[sub_resource type="StyleBoxFlat" id=2]
+bg_color = Color( 1, 0.819608, 0, 1 )
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
 
 [node name="StartScreen" type="Control"]
 anchor_right = 1.0
@@ -46,5 +51,20 @@ margin_right = 288.0
 margin_bottom = 114.0
 text = "Sir Whatever Itsname"
 align = 1
+
+[node name="PanelBG" type="Panel" parent="."]
+margin_left = 44.0
+margin_top = 48.0
+margin_right = 281.0
+margin_bottom = 61.0
+custom_styles/panel = SubResource( 2 )
+
+[node name="Label" type="Label" parent="PanelBG"]
+margin_left = 50.0
+margin_top = 1.0
+margin_right = 186.0
+margin_bottom = 11.0
+custom_colors/font_color = Color( 0.333333, 0.262745, 0, 1 )
+text = "reclaim your family's fortune"
 
 [connection signal="pressed" from="StartButton" to="." method="_on_StartButton_pressed"]

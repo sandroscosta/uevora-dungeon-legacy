@@ -38,6 +38,7 @@ var chose_speed: Dictionary = {
 }
 
 var chose_weapons: Array = ["WeaponKnife.tscn", "WeaponAxe.tscn", "WeaponHammer.tscn"]
+var chose_powers: Array = ["IceBall.tscn", "FireBall.tscn"]
 
 func set_max_hp(max_hp: int):
 	_player_max_hp = max_hp

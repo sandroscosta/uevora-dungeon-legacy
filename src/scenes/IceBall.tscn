@@ -1,0 +1,58 @@
+[gd_scene load_steps=34 format=2]
+
+[ext_resource path="res://assets/sprites/IceBall/6.png" type="Texture" id=1]
+[ext_resource path="res://assets/sprites/IceBall/7.png" type="Texture" id=2]
+[ext_resource path="res://assets/sprites/IceBall/8.png" type="Texture" id=3]
+[ext_resource path="res://assets/sprites/IceBall/9.png" type="Texture" id=4]
+[ext_resource path="res://assets/sprites/IceBall/4.png" type="Texture" id=5]
+[ext_resource path="res://assets/sprites/IceBall/5.png" type="Texture" id=6]
+[ext_resource path="res://assets/sprites/IceBall/2.png" type="Texture" id=7]
+[ext_resource path="res://assets/sprites/IceBall/3.png" type="Texture" id=8]
+[ext_resource path="res://assets/sprites/IceBall/1.png" type="Texture" id=9]
+[ext_resource path="res://assets/sprites/IceBall/18.png" type="Texture" id=10]
+[ext_resource path="res://assets/sprites/IceBall/10.png" type="Texture" id=11]
+[ext_resource path="res://assets/sprites/IceBall/22.png" type="Texture" id=12]
+[ext_resource path="res://assets/sprites/IceBall/28.png" type="Texture" id=13]
+[ext_resource path="res://assets/sprites/IceBall/30.png" type="Texture" id=14]
+[ext_resource path="res://assets/sprites/IceBall/20.png" type="Texture" id=15]
+[ext_resource path="res://assets/sprites/IceBall/11.png" type="Texture" id=16]
+[ext_resource path="res://assets/sprites/IceBall/14.png" type="Texture" id=17]
+[ext_resource path="res://assets/sprites/IceBall/12.png" type="Texture" id=18]
+[ext_resource path="res://assets/sprites/IceBall/19.png" type="Texture" id=19]
+[ext_resource path="res://assets/sprites/IceBall/23.png" type="Texture" id=20]
+[ext_resource path="res://assets/sprites/IceBall/13.png" type="Texture" id=21]
+[ext_resource path="res://assets/sprites/IceBall/25.png" type="Texture" id=22]
+[ext_resource path="res://assets/sprites/IceBall/26.png" type="Texture" id=23]
+[ext_resource path="res://assets/sprites/IceBall/24.png" type="Texture" id=24]
+[ext_resource path="res://assets/sprites/IceBall/29.png" type="Texture" id=25]
+[ext_resource path="res://assets/sprites/IceBall/21.png" type="Texture" id=26]
+[ext_resource path="res://assets/sprites/IceBall/17.png" type="Texture" id=27]
+[ext_resource path="res://assets/sprites/IceBall/27.png" type="Texture" id=28]
+[ext_resource path="res://assets/sprites/IceBall/15.png" type="Texture" id=29]
+[ext_resource path="res://assets/sprites/IceBall/16.png" type="Texture" id=30]
+[ext_resource path="res://src/scripts/IceBall.gd" type="Script" id=31]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 9 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 1 ), ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 11 ), ExtResource( 16 ), ExtResource( 18 ), ExtResource( 21 ), ExtResource( 17 ), ExtResource( 29 ), ExtResource( 30 ), ExtResource( 27 ), ExtResource( 10 ), ExtResource( 19 ), ExtResource( 15 ), ExtResource( 26 ), ExtResource( 12 ), ExtResource( 20 ), ExtResource( 24 ), ExtResource( 22 ), ExtResource( 23 ), ExtResource( 28 ), ExtResource( 13 ), ExtResource( 25 ), ExtResource( 14 ) ],
+"loop": true,
+"name": "fly",
+"speed": 15.0
+} ]
+
+[sub_resource type="CircleShape2D" id=2]
+radius = 7.07107
+
+[node name="IceBall" type="Area2D"]
+script = ExtResource( 31 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+frames = SubResource( 1 )
+animation = "fly"
+frame = 20
+playing = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 2 )
+
+[connection signal="body_entered" from="." to="." method="_on_IceBall_body_entered"]

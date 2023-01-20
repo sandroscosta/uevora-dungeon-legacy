@@ -2,6 +2,7 @@ extends Node2D
 
 onready var EnemyBase = preload("res://src/scenes/EnemyBase.tscn")
 onready var EnemySpawn = get_node("EnemySpawn")
+onready var ManaFlask = preload("res://src/scenes/ManaFlask.tscn")
 
 var rng = RandomNumberGenerator.new()
 
@@ -21,3 +22,9 @@ func enemy_spawn():
 		var enemy = EnemyBase.instance()
 		enemy.position = Vector2(rng.randi_range(50, 200), rng.randi_range(50, 200))
 		EnemySpawn.add_child(enemy)
+
+
+func _on_ManaSpawnTimer_timeout():
+	var flask = ManaFlask.instance()
+	flask.position = Vector2(rng.randi_range(50, 200), rng.randi_range(50, 200))
+	add_child(flask)
