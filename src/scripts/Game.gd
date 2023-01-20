@@ -27,7 +27,7 @@ func enemy_spawn():
 
 func _on_ManaSpawnTimer_timeout():
 	var flask = ManaFlask.instance()
-	flask.position = Vector2(rng.randi_range(50, 200), rng.randi_range(50, 200))
+	flask.position = Vector2(rng.randi_range(50, 450), rng.randi_range(50, 180))
 	add_child(flask)
 
 

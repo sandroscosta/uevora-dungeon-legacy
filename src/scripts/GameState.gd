@@ -1,18 +1,23 @@
 extends Node
 
 const MAX_ROUND_ENEMIES = 5
+const DEFAULT_MANA_VALUE = 2
+
+enum Difficulty {EASY, HARD}
 
 var random = RandomNumberGenerator.new()
 
 var player_hp: int = 100
 var _player_max_hp: int = 100 setget set_max_hp, get_max_hp
 var player_mana: int = 10
+var mana_value: int = DEFAULT_MANA_VALUE
 var treasure: int = 0
 var wave: int = 0
 var max_waves: int = 6
 var enemies_killed: int = 0
 var wave_enemy_kills: int = 0
 var spawn_num_enemies: int = MAX_ROUND_ENEMIES
+var game_difficulty = Difficulty.EASY
 
 var possible_titles = ["Captain", "Seaman", "King", "Sir", "Doctor", "Gunman"]
 var possible_first_names = ["Smartpants", "Christ", "Phasma", "Buhuu", "Pastry", "Wineman", "Vice"]

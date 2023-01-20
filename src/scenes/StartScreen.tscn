@@ -1,8 +1,11 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://assets/fonts/alagard.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://assets/sprites/frames/elf_m_hit_anim_f0.png" type="Texture" id=2]
 [ext_resource path="res://src/scripts/StartScreen.gd" type="Script" id=3]
+
+[sub_resource type="StyleBoxFlat" id=3]
+bg_color = Color( 0, 0, 0, 1 )
 
 [sub_resource type="DynamicFont" id=1]
 size = 20
@@ -13,6 +16,19 @@ bg_color = Color( 1, 0.819608, 0, 1 )
 corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 
+[sub_resource type="StyleBoxFlat" id=4]
+bg_color = Color( 0, 0, 0, 0.882353 )
+border_width_top = 2
+border_width_bottom = 2
+border_color = Color( 1, 0.819608, 0, 1 )
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id=5]
+bg_color = Color( 0.137255, 0.137255, 0.137255, 1 )
+
 [node name="StartScreen" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -21,6 +37,7 @@ script = ExtResource( 3 )
 [node name="BackgroundPanel" type="Panel" parent="."]
 margin_right = 320.0
 margin_bottom = 181.0
+custom_styles/panel = SubResource( 3 )
 
 [node name="LabelYouDied" type="Label" parent="."]
 margin_left = 43.0
@@ -67,4 +84,31 @@ margin_bottom = 11.0
 custom_colors/font_color = Color( 0.333333, 0.262745, 0, 1 )
 text = "reclaim your family's fortune"
 
+[node name="DifficultyOption" type="Panel" parent="."]
+visible = false
+margin_left = 75.0
+margin_top = 17.0
+margin_right = 244.0
+margin_bottom = 162.0
+custom_styles/panel = SubResource( 4 )
+
+[node name="EasyButton" type="Button" parent="DifficultyOption"]
+margin_left = 47.0
+margin_top = 50.0
+margin_right = 122.0
+margin_bottom = 66.0
+custom_styles/normal = SubResource( 5 )
+text = "EASY"
+flat = true
+
+[node name="HardButton" type="Button" parent="DifficultyOption"]
+margin_left = 47.0
+margin_top = 82.0
+margin_right = 122.0
+margin_bottom = 98.0
+text = "HARD"
+flat = true
+
 [connection signal="pressed" from="StartButton" to="." method="_on_StartButton_pressed"]
+[connection signal="pressed" from="DifficultyOption/EasyButton" to="." method="_on_EasyButton_pressed"]
+[connection signal="pressed" from="DifficultyOption/HardButton" to="." method="_on_HardButton_pressed"]
