@@ -1,7 +1,11 @@
 extends Control
 
+onready var LblCharName = get_node("LabelCharName")
+
+func _ready():
+	LblCharName.text = GameState.character_name
+
 func _on_StartButton_pressed():
-	#get_tree().change_scene("res://src/scenes/Game.tscn")
 	get_node("DifficultyOption").show()
 
 

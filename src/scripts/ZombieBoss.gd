@@ -1,16 +1,14 @@
 extends KinematicBody2D
 
-const DEFAULT_SPEED = 50
+const DEFAULT_SPEED = 35
 
-export (int) var health_points = 20
-export (int) var damage = 5
+export (int) var health_points = 120
+export (int) var damage = 40
 var speed : int = DEFAULT_SPEED
 var direction: Vector2
 
 onready var player = get_tree().get_nodes_in_group("player")[0]
 onready var animationSprite = get_node("AnimatedSprite")
-
-onready var coin = preload("res://src/scenes/Coin.tscn")
 
 func _physics_process(_delta):
 	direction = (player.position - position).normalized()
@@ -20,7 +18,7 @@ func _physics_process(_delta):
 
 func _on_ChaseArea_body_entered(body):
 	if body == player:
-		speed *= 1.2
+		speed *= 1.5
 
 func handle_hit(value):
 	health_points -= value
@@ -30,11 +28,7 @@ func deal_damage():
 
 func check_death():
 	if health_points <= 0:
-		GameState.enemies_killed += 1
-		GameState.wave_enemy_kills += 1
-		var drop_coin = coin.instance()
-		drop_coin.position = position
-		get_parent().add_child(drop_coin)
+		GameState.boss_killed += 1
 		queue_free()
 
 

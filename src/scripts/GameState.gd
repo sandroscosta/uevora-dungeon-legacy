@@ -13,11 +13,15 @@ var player_mana: int = 10
 var mana_value: int = DEFAULT_MANA_VALUE
 var treasure: int = 0
 var wave: int = 0
-var max_waves: int = 6
+var max_waves: int = 3
 var enemies_killed: int = 0
 var wave_enemy_kills: int = 0
 var spawn_num_enemies: int = MAX_ROUND_ENEMIES
 var game_difficulty = Difficulty.EASY
+var boss_killed: int = 0
+
+var weak_enemies: Array = ["EnemyBase.tscn", "WeakEnemy.tscn"]
+var boss_fights: Array = ["ZombieBoss.tscn", "LizardBoss.tscn"] setget , get_boss_fight
 
 var possible_titles = ["Captain", "Seaman", "King", "Sir", "Doctor", "Gunman"]
 var possible_first_names = ["Smartpants", "Christ", "Phasma", "Buhuu", "Pastry", "Wineman", "Vice"]
@@ -79,3 +83,5 @@ func generate_next_of_kin():
 	# the dict should return the characteristics of the player, including weapon
 	var next: Dictionary
 	
+func get_boss_fight():
+	return "res://src/scenes/" + boss_fights[random.randi_range(0,len(boss_fights)-1)]

@@ -1,0 +1,75 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://assets/fonts/alagard.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://assets/sprites/frames/coin_anim_f0.png" type="Texture" id=2]
+[ext_resource path="res://assets/sprites/frames/chest_full_open_anim_f2.png" type="Texture" id=3]
+[ext_resource path="res://assets/sprites/frames/chest_full_open_anim_f1.png" type="Texture" id=4]
+[ext_resource path="res://assets/sprites/frames/chest_full_open_anim_f0.png" type="Texture" id=5]
+
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 0, 0, 0, 1 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 20
+font_data = ExtResource( 1 )
+
+[sub_resource type="SpriteFrames" id=3]
+animations = [ {
+"frames": [ ExtResource( 5 ), ExtResource( 4 ), ExtResource( 3 ) ],
+"loop": true,
+"name": "run",
+"speed": 2.0
+} ]
+
+[node name="TreasuryRoomEndGame" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="BackgroundPanel" type="Panel" parent="."]
+margin_right = 320.0
+margin_bottom = 181.0
+custom_styles/panel = SubResource( 1 )
+
+[node name="LabelTitle" type="Label" parent="."]
+margin_left = 43.0
+margin_top = 27.0
+margin_right = 280.0
+margin_bottom = 58.0
+custom_fonts/font = SubResource( 2 )
+text = "Collect your inheritance"
+align = 1
+valign = 1
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+position = Vector2( 160, 80 )
+scale = Vector2( 3, 3 )
+frames = SubResource( 3 )
+animation = "run"
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 132, 124 )
+texture = ExtResource( 2 )
+
+[node name="LabelCoinsCollected" type="Label" parent="."]
+margin_left = 144.0
+margin_top = 120.0
+margin_right = 192.0
+margin_bottom = 130.0
+rect_pivot_offset = Vector2( 32, 40 )
+text = "0"
+
+[node name="StartButton" type="Button" parent="."]
+modulate = Color( 0, 1, 0.694118, 1 )
+margin_left = 112.0
+margin_top = 140.0
+margin_right = 218.0
+margin_bottom = 164.0
+text = "Begin a new Journey"
+
+[node name="LabelCharName" type="Label" parent="."]
+margin_left = 40.0
+margin_top = 19.0
+margin_right = 288.0
+margin_bottom = 29.0
+text = "Sir Whatever Itsname"
+align = 1
