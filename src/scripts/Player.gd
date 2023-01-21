@@ -2,19 +2,23 @@ extends KinematicBody2D
 
 export(int) var SPEED = 75
 var velocity: Vector2 = Vector2.ZERO
-var player_scale: Vector2 = Vector2.ZERO
+
+# comes from the generated build
+var player_build: Dictionary
 
 export (PackedScene) var weapon
 export (PackedScene) var power
 onready var aim = get_node("Aim")
+onready var sprite = get_node("AnimatedSprite")
 
 var knockback := Vector2.ZERO
 
 func _ready():
-	player_scale = GameState.chose_proportions["regular"]
+	player_build = GameState.heir
 	weapon = load("res://src/scenes/" + GameState.chose_weapons[0])
-	power = load("res://src/scenes/" + GameState.chose_powers[0])
-	scale = player_scale
+	power = load("res://src/scenes/" + player_build["power"])
+	sprite.scale = player_build["build"]["scale"]
+	SPEED = player_build["build"]["speed"]
 	
 func _input(event):
 	if event.is_action_pressed("attack"):

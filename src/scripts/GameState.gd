@@ -2,24 +2,31 @@ extends Node
 
 const MAX_ROUND_ENEMIES = 5
 const DEFAULT_MANA_VALUE = 2
+const DEFAULT_MAX_MANA_VALUE = 10
 const HARDGAME_MODIFIER = 1.25
+const MAX_DEFAULT_HEALTH = 100
+const DEFAULT_MAX_WAVES = 6
 
 enum Difficulty {EASY, HARD}
 
 var random = RandomNumberGenerator.new()
 
-var player_hp: int = 100
-var _player_max_hp: int = 100 setget set_max_hp, get_max_hp
-var player_mana: int = 10
+var player_hp: int = MAX_DEFAULT_HEALTH
+var _player_max_hp: int = MAX_DEFAULT_HEALTH setget , get_max_hp
+var player_mana: int = DEFAULT_MAX_MANA_VALUE
 var mana_value: int = DEFAULT_MANA_VALUE
 var treasure: int = 0
 var wave: int = 0
-var max_waves: int = 3
+var max_waves: int = DEFAULT_MAX_WAVES
 var enemies_killed: int = 0
 var wave_enemy_kills: int = 0
 var spawn_num_enemies: int = MAX_ROUND_ENEMIES
 var game_difficulty = Difficulty.EASY
 var boss_killed: bool = false
+
+# Shop upgrades
+var health_drops: bool = false
+var large_mana: bool = false
 
 var heirs: Array = []
 
@@ -32,6 +39,10 @@ var possible_first_names = ["Smartpants", "Christ", "Phasma", "Buhuu", "Pastry",
 var possible_last_names = ["the First", "The Last", "the Very Best", "the Church", "the Killer", "the Slayer"]
 
 var character_name: String
+
+var heir: Dictionary
+
+var build_types = ["regular", "thin", "fat"]
 
 var chose_proportions: Dictionary = {
 	"regular": Vector2(1,1),
@@ -54,8 +65,6 @@ var chose_speed: Dictionary = {
 var chose_weapons: Array = ["WeaponKnife.tscn", "WeaponAxe.tscn", "WeaponHammer.tscn"]
 var chose_powers: Array = ["IceBall.tscn", "FireBall.tscn"]
 
-func set_max_hp(max_hp: int):
-	_player_max_hp = max_hp
 
 func get_max_hp():
 	return _player_max_hp
@@ -64,12 +73,19 @@ func restart_game():
 	player_hp = _player_max_hp
 	wave = 0
 	spawn_num_enemies = MAX_ROUND_ENEMIES
-	player_mana = 10
+	player_mana = DEFAULT_MAX_MANA_VALUE
+	generate_next_of_kin()
 
 func _ready():
 	random.randomize()
-	character_name = _get_player_name()
+	generate_next_of_kin()
+	
+func generate_next_of_kin():
+	heir = generate_next_of_kin_build()
+	character_name = heir["character_name"]
 	heirs.append(character_name)
+	_player_max_hp = heir["build"]["health"]
+	player_hp = _player_max_hp
 
 func _get_player_name():
 	var name = ""
@@ -79,7 +95,7 @@ func _get_player_name():
 	return name
 	
 func _get_player_build():
-	var randbuild = random.randi_range(0, len(chose_proportions)-1)
+	var randbuild:String = build_types[random.randi_range(0, len(build_types)-1)]
 	return {
 		"scale": chose_proportions[randbuild],
 		"health": chose_health[randbuild],
@@ -90,7 +106,7 @@ func _get_player_weapon():
 	return chose_weapons[random.randi_range(0, len(chose_weapons)-1)]
 	
 func _get_player_power():
-	return chose_powers[random.randi_range(0, len(chose_weapons)-1)]
+	return chose_powers[random.randi_range(0, len(chose_powers)-1)]
 
 func generate_next_wave():
 	wave += 1
@@ -99,7 +115,7 @@ func generate_next_wave():
 	character_name = _get_player_name()
 	heirs.append(character_name)
 
-func generate_next_of_kin():
+func generate_next_of_kin_build():
 	# the dict should return the characteristics of the player, including weapon
 	var next: Dictionary = {
 		"character_name": _get_player_name(),
@@ -107,6 +123,7 @@ func generate_next_of_kin():
 		"weapon": _get_player_weapon(),
 		"power": _get_player_power()
 		}
+	return next
 	
 	
 func get_boss_fight():

@@ -8,3 +8,7 @@ func _ready():
 func _on_RestartButton_pressed():
 	GameState.restart_game()
 	get_tree().change_scene("res://src/scenes/Game.tscn")
+
+
+func _on_ShopButton_pressed():
+	get_tree().change_scene("res://src/scenes/Store.tscn")

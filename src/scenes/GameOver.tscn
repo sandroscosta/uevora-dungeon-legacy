@@ -29,15 +29,24 @@ valign = 1
 
 [node name="Sprite" type="Sprite" parent="."]
 position = Vector2( 160, 88 )
+rotation = -1.5708
 texture = ExtResource( 2 )
 
 [node name="RestartButton" type="Button" parent="."]
 modulate = Color( 0, 1, 0.694118, 1 )
-margin_left = 112.0
+margin_left = 59.0
 margin_top = 128.0
-margin_right = 208.0
+margin_right = 158.0
 margin_bottom = 152.0
 text = "Choose next of kin"
+
+[node name="ShopButton" type="Button" parent="."]
+modulate = Color( 0, 1, 0.694118, 1 )
+margin_left = 164.0
+margin_top = 128.0
+margin_right = 263.0
+margin_bottom = 152.0
+text = "Go to the Store"
 
 [node name="LabelCharName" type="Label" parent="."]
 margin_left = 40.0
@@ -48,3 +57,4 @@ text = "Sir Whatever Itsname"
 align = 1
 
 [connection signal="pressed" from="RestartButton" to="." method="_on_RestartButton_pressed"]
+[connection signal="pressed" from="ShopButton" to="." method="_on_ShopButton_pressed"]

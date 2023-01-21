@@ -1,0 +1,152 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://assets/fonts/alagard.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://assets/sprites/frames/coin_anim_f0.png" type="Texture" id=2]
+[ext_resource path="res://assets/sprites/frames/flask_green.png" type="Texture" id=3]
+[ext_resource path="res://assets/sprites/frames/flask_big_blue.png" type="Texture" id=4]
+[ext_resource path="res://src/scripts/Store.gd" type="Script" id=5]
+[ext_resource path="res://assets/sprites/frames/chest_empty_open_anim_f0.png" type="Texture" id=6]
+
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 0, 0, 0, 1 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 20
+font_data = ExtResource( 1 )
+
+[sub_resource type="StyleBoxFlat" id=3]
+bg_color = Color( 1, 0.819608, 0, 1 )
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[node name="Store" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 5 )
+
+[node name="BackgroundPanel" type="Panel" parent="."]
+margin_right = 320.0
+margin_bottom = 181.0
+custom_styles/panel = SubResource( 1 )
+
+[node name="LabelStore" type="Label" parent="."]
+margin_left = 43.0
+margin_top = 19.0
+margin_right = 280.0
+margin_bottom = 50.0
+custom_fonts/font = SubResource( 2 )
+text = "Store"
+align = 1
+valign = 1
+
+[node name="BuyHealth" type="Button" parent="."]
+modulate = Color( 0, 1, 0.694118, 1 )
+margin_left = 48.0
+margin_top = 128.0
+margin_right = 138.0
+margin_bottom = 146.0
+disabled = true
+text = "Buy health elixir"
+
+[node name="BuyMana" type="Button" parent="."]
+modulate = Color( 0, 1, 0.694118, 1 )
+margin_left = 184.0
+margin_top = 128.0
+margin_right = 274.0
+margin_bottom = 146.0
+disabled = true
+text = "Buy mana flask"
+
+[node name="FlaskGreen" type="Sprite" parent="."]
+position = Vector2( 227, 72 )
+scale = Vector2( 2, 2 )
+texture = ExtResource( 3 )
+
+[node name="FlaskBigBlue" type="Sprite" parent="."]
+position = Vector2( 92, 72 )
+scale = Vector2( 2, 2 )
+texture = ExtResource( 4 )
+
+[node name="LabelMana" type="Label" parent="."]
+margin_left = 48.0
+margin_top = 96.0
+margin_right = 136.0
+margin_bottom = 132.0
+text = "Recovers 4 mana points
+"
+align = 1
+valign = 1
+autowrap = true
+
+[node name="LabelManaPrice" type="Label" parent="."]
+margin_left = 89.0
+margin_top = 150.0
+margin_right = 116.0
+margin_bottom = 160.0
+text = "200"
+autowrap = true
+
+[node name="LabelHealth" type="Label" parent="."]
+margin_left = 184.0
+margin_top = 96.0
+margin_right = 272.0
+margin_bottom = 132.0
+text = "Activate health drops"
+align = 1
+valign = 1
+autowrap = true
+
+[node name="CoinMana" type="Sprite" parent="."]
+position = Vector2( 78, 154 )
+texture = ExtResource( 2 )
+
+[node name="LabelHealth2" type="Label" parent="."]
+margin_left = 226.0
+margin_top = 150.0
+margin_right = 253.0
+margin_bottom = 160.0
+text = "350"
+autowrap = true
+
+[node name="CoinHealth" type="Sprite" parent="."]
+position = Vector2( 215, 154 )
+texture = ExtResource( 2 )
+
+[node name="PanelBG" type="Panel" parent="."]
+margin_left = 44.0
+margin_top = 48.0
+margin_right = 281.0
+margin_bottom = 61.0
+custom_styles/panel = SubResource( 3 )
+
+[node name="Label" type="Label" parent="PanelBG"]
+margin_left = 42.0
+margin_top = 1.0
+margin_right = 192.0
+margin_bottom = 11.0
+custom_colors/font_color = Color( 0.333333, 0.262745, 0, 1 )
+text = "Buy upgrades for your next run"
+
+[node name="ChestCoins" type="Sprite" parent="."]
+position = Vector2( 273, 12 )
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 6 )
+
+[node name="Label" type="Label" parent="ChestCoins"]
+margin_left = 14.0
+margin_top = -4.0
+margin_right = 62.0
+margin_bottom = 8.0
+text = "0"
+
+[node name="BackButton" type="Button" parent="."]
+margin_left = 12.0
+margin_top = 6.0
+margin_right = 52.0
+margin_bottom = 22.0
+text = "< Back"
+flat = true
+
+[connection signal="pressed" from="BuyHealth" to="." method="_on_BuyHealth_pressed"]
+[connection signal="pressed" from="BuyMana" to="." method="_on_BuyMana_pressed"]
+[connection signal="pressed" from="BackButton" to="." method="_on_BackButton_pressed"]
