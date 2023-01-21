@@ -45,7 +45,6 @@ func _on_ManaSpawnTimer_timeout():
 
 
 func _on_EnemySpawnTimer_timeout():
-	print_debug(GameState.spawn_num_enemies, " ", spawn_counter)
 	if spawn_counter < GameState.spawn_num_enemies:
 		enemy_spawn()
 		spawn_counter += 1

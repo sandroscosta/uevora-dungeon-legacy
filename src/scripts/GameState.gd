@@ -23,6 +23,7 @@ var wave_enemy_kills: int = 0
 var spawn_num_enemies: int = MAX_ROUND_ENEMIES
 var game_difficulty = Difficulty.EASY
 var boss_killed: bool = false
+var active_curse: bool = false
 
 # Shop upgrades
 var health_drops: bool = false
@@ -86,6 +87,7 @@ func generate_next_of_kin():
 	heirs.append(character_name)
 	_player_max_hp = heir["build"]["health"]
 	player_hp = _player_max_hp
+	active_curse = true if random.randi_range(0,1) > 0 else false
 
 func _get_player_name():
 	var name = ""

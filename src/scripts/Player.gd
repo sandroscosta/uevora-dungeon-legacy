@@ -12,6 +12,7 @@ onready var aim = get_node("Aim")
 onready var sprite = get_node("AnimatedSprite")
 
 var knockback := Vector2.ZERO
+var cursed: bool = false
 
 func _ready():
 	player_build = GameState.heir
@@ -19,6 +20,11 @@ func _ready():
 	power = load("res://src/scenes/" + player_build["power"])
 	sprite.scale = player_build["build"]["scale"]
 	SPEED = player_build["build"]["speed"]
+	cursed = GameState.active_curse
+	
+	if cursed:
+		sprite.self_modulate = Color.greenyellow
+	print(cursed, " ", GameState.active_curse)
 	
 func _input(event):
 	if event.is_action_pressed("attack"):
@@ -36,7 +42,12 @@ func _physics_process(delta):
 	get_input()
 	velocity = move_and_slide(velocity)
 	
-	knockback = knockback.move_toward(Vector2.ZERO, 200*delta)
+	if velocity != Vector2.ZERO:
+		sprite.animation = "run"
+	else:
+		sprite.animation = "idle"
+	
+	knockback = knockback.move_toward(Vector2.ZERO, 250 * delta)
 	knockback = move_and_slide(knockback)
 	
 	die()
@@ -62,3 +73,8 @@ func _on_HurtBox_body_entered(body):
 		knockback = body.direction * 120
 		if body.has_method("deal_damage"):
 			GameState.player_hp -= body.deal_damage()
+
+
+func _on_Timer_timeout():
+	if cursed:
+		GameState.player_hp -= 1
