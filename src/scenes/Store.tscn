@@ -72,8 +72,7 @@ margin_left = 48.0
 margin_top = 96.0
 margin_right = 136.0
 margin_bottom = 132.0
-text = "Recovers 4 mana points
-"
+text = "Recovers 4 mana points"
 align = 1
 valign = 1
 autowrap = true

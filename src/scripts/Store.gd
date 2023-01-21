@@ -4,14 +4,13 @@ onready var LblCoinsCollected = get_node("ChestCoins/Label")
 onready var BuyManaButton = get_node("BuyMana")
 onready var BuyHealthButton = get_node("BuyHealth")
 
-var health_upgrade_value = 350
-var mana_upgrade_value = 200
+var health_upgrade_value = 3 #350
+var mana_upgrade_value = 2 #200
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	update_treasury()
 	activate_buttons()
-
 
 func _process(_delta):
 	update_treasury()

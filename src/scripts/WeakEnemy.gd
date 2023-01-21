@@ -10,6 +10,12 @@ var direction: Vector2
 onready var player = get_tree().get_nodes_in_group("player")[0]
 onready var animationSprite = get_node("AnimatedSprite")
 
+func _ready():
+	if GameState.game_difficulty == GameState.Difficulty.HARD:
+		health_points *= GameState.HARDGAME_MODIFIER
+		damage *= GameState.HARDGAME_MODIFIER
+
+
 func _physics_process(_delta):
 	direction = (player.position - position).normalized()
 	move_and_slide(direction * speed)

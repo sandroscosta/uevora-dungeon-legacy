@@ -3,7 +3,7 @@ extends Node
 const MAX_ROUND_ENEMIES = 5
 const DEFAULT_MANA_VALUE = 2
 const DEFAULT_MAX_MANA_VALUE = 10
-const HARDGAME_MODIFIER = 1.25
+const HARDGAME_MODIFIER = 1.5
 const MAX_DEFAULT_HEALTH = 100
 const DEFAULT_MAX_WAVES = 6
 
@@ -71,10 +71,11 @@ func get_max_hp():
 	return _player_max_hp
 
 func restart_game():
-	player_hp = _player_max_hp
 	wave = 0
 	spawn_num_enemies = MAX_ROUND_ENEMIES
 	player_mana = DEFAULT_MAX_MANA_VALUE
+	build = generate_next_of_kin_build()
+	generate_next_of_kin(build)
 
 func _ready():
 	random.randomize()
@@ -111,7 +112,10 @@ func _get_player_power():
 
 func generate_next_wave():
 	wave += 1
-	spawn_num_enemies = MAX_ROUND_ENEMIES * wave
+	if game_difficulty == Difficulty.HARD:
+		spawn_num_enemies = MAX_ROUND_ENEMIES * wave * 2
+	else:
+		spawn_num_enemies = MAX_ROUND_ENEMIES * wave
 	wave_enemy_kills = 0
 	character_name = _get_player_name()
 	heirs.append(character_name)

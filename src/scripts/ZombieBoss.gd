@@ -10,6 +10,13 @@ var direction: Vector2
 onready var player = get_tree().get_nodes_in_group("player")[0]
 onready var animationSprite = get_node("AnimatedSprite")
 
+onready var coin = preload("res://src/scenes/Coin.tscn")
+
+func _ready():
+	if GameState.game_difficulty == GameState.Difficulty.HARD:
+		health_points *= GameState.HARDGAME_MODIFIER
+		damage *= GameState.HARDGAME_MODIFIER
+
 func _physics_process(_delta):
 	direction = (player.position - position).normalized()
 	move_and_slide(direction * speed)
@@ -29,6 +36,10 @@ func deal_damage():
 func check_death():
 	if health_points <= 0:
 		GameState.boss_killed = true
+		var drop_coin = coin.instance()
+		drop_coin.position = position
+		drop_coin.coin_value = 1000
+		get_parent().add_child(drop_coin)
 		queue_free()
 
 
