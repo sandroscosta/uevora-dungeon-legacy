@@ -28,7 +28,7 @@ func deal_damage():
 
 func check_death():
 	if health_points <= 0:
-		GameState.boss_killed += 1
+		GameState.boss_killed = true
 		queue_free()
 
 

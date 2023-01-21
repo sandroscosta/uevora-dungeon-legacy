@@ -2,6 +2,7 @@ extends Node
 
 const MAX_ROUND_ENEMIES = 5
 const DEFAULT_MANA_VALUE = 2
+const HARDGAME_MODIFIER = 1.25
 
 enum Difficulty {EASY, HARD}
 
@@ -18,7 +19,10 @@ var enemies_killed: int = 0
 var wave_enemy_kills: int = 0
 var spawn_num_enemies: int = MAX_ROUND_ENEMIES
 var game_difficulty = Difficulty.EASY
-var boss_killed: int = 0
+var boss_killed: bool = false
+
+var heirs: Array = []
+
 
 var weak_enemies: Array = ["EnemyBase.tscn", "WeakEnemy.tscn"]
 var boss_fights: Array = ["ZombieBoss.tscn", "LizardBoss.tscn"] setget , get_boss_fight
@@ -65,6 +69,7 @@ func restart_game():
 func _ready():
 	random.randomize()
 	character_name = _get_player_name()
+	heirs.append(character_name)
 
 func _get_player_name():
 	var name = ""
@@ -72,16 +77,37 @@ func _get_player_name():
 	name += " " + possible_first_names[random.randi_range(0, len(possible_first_names)-1)]
 	name += " " + possible_last_names[random.randi_range(0, len(possible_last_names)-1)]
 	return name
+	
+func _get_player_build():
+	var randbuild = random.randi_range(0, len(chose_proportions)-1)
+	return {
+		"scale": chose_proportions[randbuild],
+		"health": chose_health[randbuild],
+		"speed": chose_speed[randbuild],
+		}
+
+func _get_player_weapon():
+	return chose_weapons[random.randi_range(0, len(chose_weapons)-1)]
+	
+func _get_player_power():
+	return chose_powers[random.randi_range(0, len(chose_weapons)-1)]
 
 func generate_next_wave():
 	wave += 1
 	spawn_num_enemies = MAX_ROUND_ENEMIES * wave
 	wave_enemy_kills = 0
 	character_name = _get_player_name()
+	heirs.append(character_name)
 
 func generate_next_of_kin():
 	# the dict should return the characteristics of the player, including weapon
-	var next: Dictionary
+	var next: Dictionary = {
+		"character_name": _get_player_name(),
+		"build": _get_player_build(),
+		"weapon": _get_player_weapon(),
+		"power": _get_player_power()
+		}
+	
 	
 func get_boss_fight():
 	return "res://src/scenes/" + boss_fights[random.randi_range(0,len(boss_fights)-1)]
