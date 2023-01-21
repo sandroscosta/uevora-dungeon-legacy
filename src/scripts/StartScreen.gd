@@ -5,7 +5,7 @@ onready var sprite = get_node("Sprite")
 
 func _ready():
 	LblCharName.text = GameState.character_name
-	sprite.scale = GameState.heir["build"]["scale"]
+	sprite.scale = GameState.build["build"]["scale"]
 
 func _on_StartButton_pressed():
 	get_node("DifficultyOption").show()

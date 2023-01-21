@@ -32,7 +32,6 @@ func check_death():
 		GameState.wave_enemy_kills += 1
 		queue_free()
 
-
 func _on_ChaseArea_body_exited(body):
 	if body == player:
 		speed = DEFAULT_SPEED

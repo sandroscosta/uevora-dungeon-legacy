@@ -15,8 +15,8 @@ var knockback := Vector2.ZERO
 var cursed: bool = false
 
 func _ready():
-	player_build = GameState.heir
-	weapon = load("res://src/scenes/" + GameState.chose_weapons[0])
+	player_build = GameState.build
+	weapon = load("res://src/scenes/" + player_build["weapon"])
 	power = load("res://src/scenes/" + player_build["power"])
 	sprite.scale = player_build["build"]["scale"]
 	SPEED = player_build["build"]["speed"]
@@ -24,7 +24,6 @@ func _ready():
 	
 	if cursed:
 		sprite.self_modulate = Color.greenyellow
-	print(cursed, " ", GameState.active_curse)
 	
 func _input(event):
 	if event.is_action_pressed("attack"):

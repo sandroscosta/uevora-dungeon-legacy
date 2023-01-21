@@ -30,7 +30,7 @@
 [ext_resource path="res://assets/sprites/FireBall/7.png" type="Texture" id=28]
 [ext_resource path="res://assets/sprites/FireBall/23.png" type="Texture" id=29]
 [ext_resource path="res://assets/sprites/FireBall/26.png" type="Texture" id=30]
-[ext_resource path="res://src/scripts/IceBall.gd" type="Script" id=31]
+[ext_resource path="res://src/scripts/FireBall.gd" type="Script" id=31]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -49,7 +49,7 @@ script = ExtResource( 31 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 1 )
 animation = "fly"
-frame = 1
+frame = 8
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

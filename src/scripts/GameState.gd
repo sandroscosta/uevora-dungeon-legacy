@@ -32,7 +32,7 @@ var large_mana: bool = false
 var heirs: Array = []
 
 
-var weak_enemies: Array = ["EnemyBase.tscn", "WeakEnemy.tscn"]
+var weak_enemies: Array = ["EnemyBase.tscn", "WeakEnemy.tscn"] setget , get_basic_enemy
 var boss_fights: Array = ["ZombieBoss.tscn", "LizardBoss.tscn"] setget , get_boss_fight
 
 var possible_titles = ["Captain", "Seaman", "King", "Sir", "Doctor", "Gunman"]
@@ -41,7 +41,7 @@ var possible_last_names = ["the First", "The Last", "the Very Best", "the Church
 
 var character_name: String
 
-var heir: Dictionary
+var build
 
 var build_types = ["regular", "thin", "fat"]
 
@@ -75,14 +75,13 @@ func restart_game():
 	wave = 0
 	spawn_num_enemies = MAX_ROUND_ENEMIES
 	player_mana = DEFAULT_MAX_MANA_VALUE
-	generate_next_of_kin()
 
 func _ready():
 	random.randomize()
-	generate_next_of_kin()
+	build = generate_next_of_kin_build()
+	generate_next_of_kin(build)
 	
-func generate_next_of_kin():
-	heir = generate_next_of_kin_build()
+func generate_next_of_kin(heir):
 	character_name = heir["character_name"]
 	heirs.append(character_name)
 	_player_max_hp = heir["build"]["health"]
@@ -130,3 +129,6 @@ func generate_next_of_kin_build():
 	
 func get_boss_fight():
 	return "res://src/scenes/" + boss_fights[random.randi_range(0,len(boss_fights)-1)]
+
+func get_basic_enemy():
+	return "res://src/scenes/" + weak_enemies[random.randi_range(0,len(weak_enemies)-1)]

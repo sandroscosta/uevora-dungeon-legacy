@@ -1,6 +1,5 @@
 extends Node2D
 
-onready var EnemyBase = preload("res://src/scenes/EnemyBase.tscn") 
 onready var EnemySpawn = get_node("EnemySpawn")
 onready var ManaFlask = preload("res://src/scenes/ManaFlask.tscn")
 var BossEnemySprite
@@ -33,6 +32,7 @@ func _process(_delta):
 		get_tree().change_scene("res://src/scenes/TreasuryRoomEndGame.tscn")
 
 func enemy_spawn():
+	var EnemyBase = load(GameState.get_basic_enemy())
 	var enemy = EnemyBase.instance()
 	enemy.position = Vector2(rng.randi_range(30, 550), rng.randi_range(30, 220))
 	EnemySpawn.add_child(enemy)

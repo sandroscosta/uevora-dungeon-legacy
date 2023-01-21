@@ -1,6 +1,6 @@
 extends KinematicBody2D
 
-const DEFAULT_SPEED = 50
+const DEFAULT_SPEED = 40
 
 export (int) var health_points = 20
 export (int) var damage = 5

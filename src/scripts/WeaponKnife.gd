@@ -1,7 +1,7 @@
 extends Area2D
 
 
-export (int) var speed: int = 200
+export (int) var speed: int = 250
 export (int) var damage: int = 5
 var hit: bool = false
 var throwable: bool = true
