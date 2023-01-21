@@ -44,6 +44,7 @@ script = ExtResource( 1 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 2 )
 animation = "idle"
+frame = 2
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -73,5 +74,10 @@ script = ExtResource( 11 )
 wait_time = 3.0
 autostart = true
 
+[node name="Stamina" type="Timer" parent="."]
+wait_time = 0.3
+autostart = true
+
 [connection signal="body_entered" from="HurtBox" to="." method="_on_HurtBox_body_entered"]
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
+[connection signal="timeout" from="Stamina" to="." method="_on_Stamina_timeout"]

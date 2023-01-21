@@ -43,29 +43,31 @@ align = 1
 valign = 1
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
-position = Vector2( 160, 80 )
+position = Vector2( 112, 88 )
 scale = Vector2( 3, 3 )
 frames = SubResource( 3 )
 animation = "run"
+frame = 1
+playing = true
 
 [node name="Sprite" type="Sprite" parent="."]
-position = Vector2( 132, 124 )
+position = Vector2( 148, 76 )
 texture = ExtResource( 2 )
 
 [node name="LabelCoinsCollected" type="Label" parent="."]
-margin_left = 144.0
-margin_top = 120.0
-margin_right = 192.0
-margin_bottom = 130.0
+margin_left = 160.0
+margin_top = 72.0
+margin_right = 200.0
+margin_bottom = 82.0
 rect_pivot_offset = Vector2( 32, 40 )
 text = "0"
 
 [node name="StartButton" type="Button" parent="."]
 modulate = Color( 0, 1, 0.694118, 1 )
-margin_left = 112.0
-margin_top = 140.0
-margin_right = 218.0
-margin_bottom = 164.0
+margin_left = 104.0
+margin_top = 136.0
+margin_right = 210.0
+margin_bottom = 160.0
 text = "Begin a new Journey"
 
 [node name="LabelCharName" type="Label" parent="."]
@@ -75,3 +77,13 @@ margin_right = 288.0
 margin_bottom = 29.0
 text = "Sir Whatever Itsname"
 align = 1
+
+[node name="LabelDinasty" type="Label" parent="."]
+margin_left = 144.0
+margin_top = 96.0
+margin_right = 256.0
+margin_bottom = 119.0
+text = "Took you 1 dinasty to achieve victory"
+autowrap = true
+
+[connection signal="pressed" from="StartButton" to="." method="_on_StartButton_pressed"]

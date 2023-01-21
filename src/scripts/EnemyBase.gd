@@ -40,6 +40,7 @@ func check_death():
 		GameState.wave_enemy_kills += 1
 		var drop_coin = coin.instance()
 		drop_coin.position = position
+		drop_coin.coin_value = 2
 		get_parent().add_child(drop_coin)
 		queue_free()
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://assets/fonts/alagard.tres" type="DynamicFont" id=1]
 [ext_resource path="res://src/scripts/PlayerHealthBar.gd" type="Script" id=2]
@@ -10,6 +10,8 @@
 [ext_resource path="res://src/scripts/ManaBar.gd" type="Script" id=8]
 [ext_resource path="res://assets/sprites/frames/chest_full_open_anim_f0.png" type="Texture" id=9]
 [ext_resource path="res://src/scripts/Coins.gd" type="Script" id=10]
+[ext_resource path="res://src/scripts/StaminaBar.gd" type="Script" id=11]
+[ext_resource path="res://src/scenes/GameUi.gd" type="Script" id=12]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0.168627, 0.623529, 0.0588235, 1 )
@@ -18,12 +20,13 @@ bg_color = Color( 0.168627, 0.623529, 0.0588235, 1 )
 bg_color = Color( 0, 0, 0, 0.784314 )
 
 [sub_resource type="StyleBoxFlat" id=3]
-bg_color = Color( 0.0588235, 0.439216, 0.658824, 1 )
+bg_color = Color( 0.0588235, 0.533333, 0.658824, 1 )
 
 [sub_resource type="StyleBoxFlat" id=4]
 bg_color = Color( 0.0313726, 0.0313726, 0.0352941, 1 )
 
 [node name="GameUI" type="CanvasLayer"]
+script = ExtResource( 12 )
 
 [node name="Panel" type="Panel" parent="."]
 margin_left = 4.0
@@ -51,15 +54,16 @@ percent_visible = false
 script = ExtResource( 2 )
 
 [node name="LabelHealth" type="Label" parent="Panel/PlayerHealthBar"]
-margin_left = 16.0
-margin_top = 1.0
-margin_right = 56.0
-margin_bottom = 11.0
+margin_left = 17.0
+margin_top = 2.0
+margin_right = 57.0
+margin_bottom = 12.0
+rect_scale = Vector2( 0.8, 0.8 )
 custom_fonts/font = ExtResource( 1 )
 text = "100/100"
 
 [node name="Skull" type="Sprite" parent="."]
-position = Vector2( 117, 170 )
+position = Vector2( 125, 170 )
 texture = ExtResource( 5 )
 
 [node name="LabelEnemiesKilled" type="Label" parent="Skull"]
@@ -74,7 +78,7 @@ script = ExtResource( 4 )
 margin_left = 73.0
 margin_top = 178.0
 margin_right = 84.0
-margin_bottom = 209.0
+margin_bottom = 197.0
 rect_rotation = -89.9999
 size_flags_horizontal = 0
 custom_styles/fg = SubResource( 3 )
@@ -85,20 +89,38 @@ value = 10.0
 percent_visible = false
 script = ExtResource( 8 )
 
+[node name="StaminaBar" type="ProgressBar" parent="."]
+margin_left = 93.0
+margin_top = 178.0
+margin_right = 104.0
+margin_bottom = 182.0
+rect_rotation = -89.9999
+size_flags_horizontal = 0
+custom_styles/fg = SubResource( 3 )
+custom_styles/bg = SubResource( 4 )
+max_value = 20.0
+step = 1.0
+value = 10.0
+percent_visible = false
+script = ExtResource( 11 )
+
 [node name="UiHeartFull" type="Sprite" parent="."]
 position = Vector2( 14, 173 )
 scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 7 )
 
 [node name="FlaskBlue" type="Sprite" parent="."]
-position = Vector2( 88, 172 )
+position = Vector2( 83, 172 )
 scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 6 )
 
 [node name="Chest" type="Sprite" parent="."]
-position = Vector2( 176, 172 )
+position = Vector2( 187, 172 )
 scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 9 )
+__meta__ = {
+"_edit_group_": true
+}
 
 [node name="Coins" type="Label" parent="Chest"]
 margin_left = 14.0

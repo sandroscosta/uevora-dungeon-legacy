@@ -10,6 +10,8 @@ var direction: Vector2
 onready var player = get_tree().get_nodes_in_group("player")[0]
 onready var animationSprite = get_node("AnimatedSprite")
 
+onready var coin = preload("res://src/scenes/Coin.tscn")
+
 func _ready():
 	if GameState.game_difficulty == GameState.Difficulty.HARD:
 		health_points *= GameState.HARDGAME_MODIFIER
@@ -36,6 +38,9 @@ func check_death():
 	if health_points <= 0:
 		GameState.enemies_killed += 1
 		GameState.wave_enemy_kills += 1
+		var drop_coin = coin.instance()
+		drop_coin.position = position
+		get_parent().add_child(drop_coin)
 		queue_free()
 
 func _on_ChaseArea_body_exited(body):

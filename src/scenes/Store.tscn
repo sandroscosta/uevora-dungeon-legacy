@@ -41,18 +41,18 @@ valign = 1
 
 [node name="BuyHealth" type="Button" parent="."]
 modulate = Color( 0, 1, 0.694118, 1 )
-margin_left = 48.0
+margin_left = 184.0
 margin_top = 128.0
-margin_right = 138.0
+margin_right = 274.0
 margin_bottom = 146.0
 disabled = true
 text = "Buy health elixir"
 
 [node name="BuyMana" type="Button" parent="."]
 modulate = Color( 0, 1, 0.694118, 1 )
-margin_left = 184.0
+margin_left = 48.0
 margin_top = 128.0
-margin_right = 274.0
+margin_right = 138.0
 margin_bottom = 146.0
 disabled = true
 text = "Buy mana flask"
@@ -99,7 +99,7 @@ autowrap = true
 position = Vector2( 78, 154 )
 texture = ExtResource( 2 )
 
-[node name="LabelHealth2" type="Label" parent="."]
+[node name="LabelHealthPrice" type="Label" parent="."]
 margin_left = 226.0
 margin_top = 150.0
 margin_right = 253.0

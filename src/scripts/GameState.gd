@@ -6,12 +6,14 @@ const DEFAULT_MAX_MANA_VALUE = 10
 const HARDGAME_MODIFIER = 1.5
 const MAX_DEFAULT_HEALTH = 100
 const DEFAULT_MAX_WAVES = 6
+const MAX_STAMINA = 35
 
 enum Difficulty {EASY, HARD}
 
 var random = RandomNumberGenerator.new()
 
 var player_hp: int = MAX_DEFAULT_HEALTH
+var player_stamina: int = MAX_STAMINA
 var _player_max_hp: int = MAX_DEFAULT_HEALTH setget , get_max_hp
 var player_mana: int = DEFAULT_MAX_MANA_VALUE
 var mana_value: int = DEFAULT_MANA_VALUE
@@ -74,13 +76,24 @@ func restart_game():
 	wave = 0
 	spawn_num_enemies = MAX_ROUND_ENEMIES
 	player_mana = DEFAULT_MAX_MANA_VALUE
-	build = generate_next_of_kin_build()
+	player_stamina = MAX_STAMINA
+
 	generate_next_of_kin(build)
+	
+func _initialize_game():
+	heirs = []
+	health_drops = false
+	large_mana = false
+	boss_killed = false
+	treasure = 0
+	enemies_killed = 0
+	restart_game()
 
 func _ready():
 	random.randomize()
 	build = generate_next_of_kin_build()
 	generate_next_of_kin(build)
+	
 	
 func generate_next_of_kin(heir):
 	character_name = heir["character_name"]

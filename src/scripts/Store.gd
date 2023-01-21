@@ -4,13 +4,22 @@ onready var LblCoinsCollected = get_node("ChestCoins/Label")
 onready var BuyManaButton = get_node("BuyMana")
 onready var BuyHealthButton = get_node("BuyHealth")
 
-var health_upgrade_value = 3 #350
-var mana_upgrade_value = 2 #200
+onready var LblManaPrice = get_node("LabelManaPrice")
+onready var LblHealthPrice = get_node("LabelHealthPrice")
+
+var health_upgrade_value = 350
+var mana_upgrade_value = 200
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	update_treasury()
 	activate_buttons()
+	if GameState.game_difficulty == GameState.Difficulty.HARD:
+		health_upgrade_value *= GameState.HARDGAME_MODIFIER
+		mana_upgrade_value *= GameState.HARDGAME_MODIFIER
+	
+	LblManaPrice.text = str(mana_upgrade_value)
+	LblHealthPrice.text = str(health_upgrade_value)
 
 func _process(_delta):
 	update_treasury()

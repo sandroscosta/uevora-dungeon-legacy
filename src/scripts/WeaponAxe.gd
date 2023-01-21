@@ -1,17 +1,15 @@
 extends Area2D
 
 
-export (int) var speed: int = 250
-export (int) var damage: int = 5
+export (int) var speed: int = 150
+export (int) var damage: int = 8
 var hit: bool = false
-var throwable: bool = true
-var stamina_consumed = 1
+var stamina_consumed = 2
 
 onready var animation = get_node("AnimationPlayer")
 
 func _ready():
 	animation.play("throw")
-
 
 func _process(delta):
 	position += transform.x * speed * delta

@@ -57,8 +57,10 @@ func die():
 
 func attack():
 	var weapon_attack = weapon.instance()
-	add_child(weapon_attack)
-	weapon_attack.transform = aim.transform
+	if GameState.player_stamina > 0 && GameState.player_stamina >= weapon_attack.stamina_consumed:
+		add_child(weapon_attack)
+		weapon_attack.transform = aim.transform
+		GameState.player_stamina -= weapon_attack.stamina_consumed
 	
 func power():
 	if GameState.player_mana > 0:
@@ -77,3 +79,8 @@ func _on_HurtBox_body_entered(body):
 func _on_Timer_timeout():
 	if cursed:
 		GameState.player_hp -= 1
+
+
+func _on_Stamina_timeout():
+	if GameState.player_stamina < GameState.MAX_STAMINA:
+		GameState.player_stamina += 1

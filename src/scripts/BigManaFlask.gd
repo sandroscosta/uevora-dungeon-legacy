@@ -1,6 +1,6 @@
 extends Area2D
 
-var mana_value = GameState.mana_value
+var mana_value = GameState.mana_value + 2
 
 func _on_ManaFlask_body_entered(body):
 	if body.name == "Player":
